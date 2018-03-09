@@ -1,21 +1,21 @@
 class MP3Importer
-  attr_accessor :path
+  attr_reader :path
 
-
-  def initialize(file_path)
-    @path = file_path
+  def initialize(path)
+    @path = path
   end
 
   def files
-    Dir["./spec/fixtures/mp3s/*"].map {|x| File.basename(x)}
+    @list_of_files ||= Dir.glob("#{path}/*.mp3").collect{ |files|
+      files.gsub("#{path}/", "")
+    }
   end
 
   def import
-    self.files.each{|filename|Song.new_by_filename(filename)}
+    files.each do |file_name|
+      Song.new_by_filename(file_name)
+    end
   end
 
-  def size
-    self.files.size? 
-  end
 
 end
