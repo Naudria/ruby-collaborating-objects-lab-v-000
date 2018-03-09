@@ -1,4 +1,4 @@
-cclass Song
+class Song
   attr_accessor :name, :artist
 
   def initialize(name)
@@ -11,7 +11,7 @@ cclass Song
     song = song_array[1]
     new_song = self.new(song)
     new_song.artist_name = artist
-    return new_song 
+    return new_song
   end
 
   def artist_name=(name)
